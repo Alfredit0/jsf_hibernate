@@ -1,0 +1,152 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Lista de Jugadores</title>
+    </h:head>
+
+    <h:body>
+        <h:form id="idForm">
+            <p:growl id="msgs" showDetail="true"/>
+            
+            <p:dataTable 
+                id="idTabla" 
+                var="registro" 
+                value="#{medicoController.listaRegistro}"
+                scrollable="true"       
+                editable="true"  
+                selectionMode="single"
+                selection="#{medicoController.selectedJudor}"
+                rowKey="#{registro.idMedico}"
+                emptyMessage="No hay elementos">
+                
+                <f:facet name="header">
+                    CRUD JSF Medicos
+                </f:facet>
+                
+                <!-- Implementar métodos para el onrowedit -->
+                <p:ajax event="rowSelect" listener="#{medicoController.onRowSelect}" update=":idForm:msgs"></p:ajax>
+                <p:ajax event="rowEdit" listener="#{medicoController.onRowEdit}" update=":idForm:msgs"></p:ajax>
+                <p:ajax event="rowEditCancel" listener="#{medicoController.onRowCancel}" update=":idForm:msgs"></p:ajax>
+                
+                <p:column>
+                    <f:facet name="header">Id Usuario</f:facet>
+                    #{registro.idMedico}
+                </p:column> 
+                
+                <p:column headerText="Nombre">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{registro.nombre}"></h:outputText>
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{registro.nombre}"></p:inputText>
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column> 
+                <p:column headerText="Apellidos">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{registro.apellidos}"></h:outputText>
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{registro.apellidos}"></p:inputText>
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column> 
+                                <p:column headerText="Especialidad">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{registro.especialidad}"></h:outputText>
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{registro.especialidad}"></p:inputText>
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column> 
+                <p:column headerText="CURP">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{registro.curp}"></h:outputText>
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{registro.curp}"></p:inputText>
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column> 
+                                <p:column headerText="Direccion">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{registro.direccion}"></h:outputText>
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{registro.direccion}"></p:inputText>
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column> 
+                <p:column headerText="Telefono">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{registro.telefono}"></h:outputText>
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{registro.telefono}"></p:inputText>
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column> 
+                <p:column headerText="Salario Mensual">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{registro.salario_m}"></h:outputText>
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{registro.salario_m}"></p:inputText>
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column> 
+                <p:column headerText="Estado civil">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{registro.estadocivil}"></h:outputText>
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{registro.estadocivil}"></p:inputText>
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column> 
+                <p:column headerText="Puesto">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{registro.puesto}"></h:outputText>
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{registro.puesto}"></p:inputText>
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>                               
+                
+                <p:column headerText="Editar">    
+                    <p:rowEditor />
+                </p:column>
+                
+                <p:column headerText="Eliminar">
+                    <p:commandButton value="Eliminar"
+                                     icon="ui-icon-trash"
+                                     actionListener="#{medicoController.eliminarRegistro(registro)}"
+                                     update=":idForm:idTabla"
+                                     ajax="true">
+                                     
+                        
+                    </p:commandButton>
+                </p:column>
+                
+                
+            </p:dataTable>
+        </h:form>
+    </h:body>
+
+</html>

@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <!-- Etiqueas de HTML -->
+        
+        <ui:composition template="./plantillaPrincipal.xhtml">
+            <ui:define name="left">
+                Menu
+                <br></br>
+                <br></br>
+                <h:form>
+                    <p:commandButton value="Crear"
+                                     icon="ui-icon-plus"
+                                     ajax="true"
+                                     onclick="location.href='faces/pages/altaJugador.xhtml'">                                                             
+                    </p:commandButton>
+                </h:form>
+            </ui:define>
+
+            <ui:define name="content">
+                <ui:include src="datos.xhtml"></ui:include>
+            </ui:define>
+
+            <ui:define name="bottom">
+                <p style="font-size: 1.3em; text-align: center">Elaborado por: Benito Alfredo Reyes Hernández</p>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
